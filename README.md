@@ -90,6 +90,29 @@ http://localhost:8000/docs
 
 ---
 
+## 🔑 Authentication (Swagger usage)
+
+This API uses OAuth2 password flow with JWT authentication.
+
+When using the interactive documentation (`/docs`):
+
+1. Create a user via `POST /users`
+2. Click on **Authorize** (top right)
+3. Enter:
+   - **username** → your email  
+   - **password** → your password  
+4. Swagger will automatically call the `/login` endpoint and retrieve a JWT token
+5. The token is then included in all subsequent requests
+
+You can now access protected endpoints such as:
+- `GET /notes`
+- `POST /notes`
+- `PATCH /notes/{id}`
+
+No manual token handling is required when using Swagger.
+
+---
+
 ## 🧠 Architecture
 
 The project follows a layered architecture:
