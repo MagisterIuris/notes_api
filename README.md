@@ -11,6 +11,7 @@ A backend API that allows users to create, retrieve, and update their personal n
 - ORM: SQLAlchemy  
 - Validation: Pydantic  
 - Authentication: JWT (python-jose)  
+- Security: passlib (bcrypt), secrets  
 - Containerization: Docker + Docker Compose  
 
 ---
@@ -33,6 +34,8 @@ A backend API that allows users to create, retrieve, and update their personal n
 - Each note is linked to a specific user (user_id)
 - Users can only access their own notes
 - Authentication is handled via JWT tokens
+- Passwords are securely hashed using passlib with the bcrypt algorithm
+- Secret keys are generated using Python’s secrets module
 - Protection against unauthorized access 
 
 ---
