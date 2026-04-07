@@ -1,0 +1,8 @@
+.venv 
+.env 
+.env.example 
+/__pycache__/
+important.txt 
+what_the_api_does.txt
+.gitignore 
+README.md

@@ -1,0 +1,4 @@
+from .business_exception import BusinessException
+
+class NotFoundException(BusinessException): 
+    pass 
