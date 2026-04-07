@@ -1,5 +1,5 @@
 from routes import router as user_router
-from database import Base, engine
+from database import Base, engine, wait_for_db
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from exceptions import AuthenticationException, ValidationException, NotFoundException
@@ -10,6 +10,9 @@ app = FastAPI(title="Notes API",
               version="1.0.0")
 
 app.include_router(user_router)
+
+wait_for_db(engine)
+
 Base.metadata.create_all(bind=engine)
 
 
