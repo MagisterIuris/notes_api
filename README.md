@@ -79,7 +79,7 @@ SECRET_KEY=your_generated_secret_key
 ### 3. Run with Docker
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ---
