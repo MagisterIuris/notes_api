@@ -24,13 +24,20 @@ class NoteService:
         content = note_info.content
         title = note_info.title
         if not note: 
-            raise NotFoundException("Not Found.")        
+            raise NotFoundException("Not found.")        
         if content is not None: 
             note.content = content 
         if title is not None: 
             note.title = title 
 
         return self.note_repository.save_note(note)
+    
+
+    def delete_note(self, note_id: int, user_id: int): 
+        note = self.note_repository.get_note(note_id, user_id)
+        if not note: 
+            raise NotFoundException("Note not found.")
+        self.note_repository.delete_note(note)
         
 
         

@@ -3,7 +3,7 @@ from fastapi import Depends
 from dependencies import get_current_user_id, get_note_service
 from services import NoteService
 from schemas import NoteDTO, NoteCreateDTO, NoteUpdateDTO
-
+from fastapi import Response
 
 @router.get("/notes")
 def get_authenticated_user_notes (user_id: int = Depends(get_current_user_id), 
@@ -28,3 +28,9 @@ def update_user_note (id: int, note_info: NoteUpdateDTO,
     return NoteDTO.model_validate(note)
     
 
+@router.delete("/notes/{id}")
+def delete_user_note(id: int, 
+                     user_id: int = Depends(get_current_user_id), 
+                     note_service: NoteService = Depends(get_note_service)): 
+    note_service.delete_note(id, user_id)
+    return Response(status_code=204)
