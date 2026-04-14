@@ -26,3 +26,8 @@ class NoteRepository:
         self.db.commit()
         self.db.refresh(note)
         return note 
+    
+
+    def delete_note(self, note: Note): 
+        self.db.delete(note)
+        self.db.commit()
