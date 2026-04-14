@@ -1,6 +1,6 @@
 # 📝 Notes API
 
-A backend API that allows users to create, retrieve, and update their personal notes, with secure authentication using JWT.
+A secure RESTful backend API that allows users to create, retrieve, update and delete their personal notes, with JWT-based authentication.
 
 ---
 
@@ -20,10 +20,11 @@ A backend API that allows users to create, retrieve, and update their personal n
 
 - User authentication (signup / login)
 - JWT token generation
-- Notes management:
+- Notes management (with strict ownership validation):
   - Create notes
   - Retrieve user notes
-  - Partially update notes (PATCH)
+  - Partially update notes (PATCH) 
+  - Delete notes
 - User data isolation (security)
 - Proper HTTP error handling (401, 404, 422)
 
@@ -32,11 +33,11 @@ A backend API that allows users to create, retrieve, and update their personal n
 ## 🔐 Security
 
 - Each note is linked to a specific user (user_id)
-- Users can only access their own notes
+- Users can only access, update and delete their own notes
 - Authentication is handled via JWT tokens
 - Passwords are securely hashed using passlib with the bcrypt algorithm
 - Secret keys are generated using Python’s secrets module
-- Protection against unauthorized access 
+- Protection against unauthorized access (Unauthorized access returns 404 to prevent resource existence leakage)
 
 ---
 
@@ -108,6 +109,7 @@ You can now access protected endpoints such as:
 - `GET /notes`
 - `POST /notes`
 - `PATCH /notes/{id}`
+- `DELETE /notes/{id}`
 
 No manual token handling is required when using Swagger.
 
@@ -141,6 +143,7 @@ routes → services → repositories → domain → database
 - GET /notes → retrieve user notes  
 - POST /notes → create a note  
 - PATCH /notes/{id} → update a note  
+- DELETE /notes/{id} → delete a note
 
 ---
 
@@ -166,7 +169,6 @@ This project was built to:
 
 ## 📈 Future Improvements
 
-- Delete endpoint (DELETE /notes/{id})
 - Pagination
 - Search / filtering
 - Automated tests (Pytest)
